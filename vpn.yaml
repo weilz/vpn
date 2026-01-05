@@ -1,0 +1,66 @@
+# ========== 通用设置 ==========
+mixed-port: 7890
+allow-lan: true
+external-controller: 127.0.0.1:9090
+ipv6: false
+
+# ========== 节点 ==========
+proxies:
+  - name: "PH-Reality"
+    type: vless
+    server: 8.212.169.60
+    port: 8443
+    uuid: cb0f6f6d-a2a0-4d8b-b1cc-cf5198ec1961
+    udp: true
+    tls: true
+    flow: xtls-rprx-vision
+    network: tcp
+    reality-opts:
+      public-key: "ObBBvzWlOu-0OTO1nr8GyvoubGlbxez2OJ6eH2xiMxs"
+      short-id: "abcd"
+    servername: "www.microsoft.com"
+    client-fingerprint: chrome
+
+  - name: "SG-Reality"
+    type: vless
+    server: 8.222.153.212
+    port: 8443
+    uuid: 915cd67d-5e04-4c27-a5ca-7583f6aee748
+    udp: true
+    tls: true
+    flow: xtls-rprx-vision
+    network: tcp
+    reality-opts:
+      public-key: "mqf5_Y35ucHsgOyyFtsR6TcbsoOOfHOHvyLjJZvB2GI"
+      short-id: "abcd"
+    servername: "www.microsoft.com"
+    client-fingerprint: chrome
+
+  - name: "US-Reality"
+    type: vless
+    server: 47.253.143.193
+    port: 8443
+    uuid: 279317da-1e5e-42b5-bb54-35d24a49aca6
+    udp: true
+    tls: true
+    flow: xtls-rprx-vision
+    network: tcp
+    reality-opts:
+      public-key: "6Y4xMdaKg-5OALMRItgE0s5-07YVR3-Yja_jxFNLb2g"
+      short-id: "abcd"
+    servername: "www.microsoft.com"
+    client-fingerprint: chrome
+
+# ========== 代理组（可手动/自动切） ==========
+proxy-groups:
+  - name: Proxy
+    type: select          # 想自动选最快改成 url-test 即可
+    proxies:
+      - PH-Reality
+      - SG-Reality
+      - US-Reality
+      # - DIRECT        # 如需裸连对比再放开
+
+# ========== 规则 ==========
+rules:
+  - MATCH,Proxy
